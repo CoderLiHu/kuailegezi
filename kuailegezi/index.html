@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>快乐格子前端面试</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+	</head>
+	<body ng-app="myApp" ng-controller="MyController">
+
+
+		<div class="formDiv">
+			<!--import-->
+			<h4>添加新员工</h4>
+			<table>
+				<tr>
+					<td class="word"><label for="number">编号:</label></td>
+					<td class="inp">
+						<input type="text" name="number" id="number" ng-model="employee.number" />
+					</td>
+				</tr>
+				<tr>
+					<td class="word"><label for="name">姓名:</label> </td>
+					<td class="inp">
+						<input type="text" name="name" id="name" ng-model="employee.name" />
+					</td>
+				</tr>
+				<tr>
+					<td class="word"><label for="score">分数:</label> </td>
+					<td class="inp">
+						<input type="text" name="score" id="score" ng-model="employee.score"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<button class="addEmpButton" ng-click="addTr()">提交</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		<!--export-->
+		<table class="employeeTable">
+			<tr>
+				<th>编号</th>
+				<th>姓名</th>
+				<th>分数</th>
+				<th>操作</th>
+			</tr>
+			<tr ng-repeat="employee in employees | reverse">
+				<td ng-bind="employee.number"></td>
+				<td ng-bind="employee.name"></td>
+				<td ng-bind="employee.score"></td>
+				<td><a href="#" ng-click="deleteTr($index)" >删除</a></td>
+			</tr>
+			<tr>
+				<td>小计</td>
+				<td>共<span ng-bind="employees.length"></span>人</td>
+				<td>平均分数：</td>
+				<td ng-bind="averageCount() | number:2">&nbsp;</td>
+			</tr>
+
+		</table>
+	</body>
+	<script type="text/javascript" src="js/angular1.5.js"></script>
+	<script type="text/javascript" src="js/myApp.js"></script>
+</html>
